@@ -52,14 +52,14 @@ public class CarritoServiceImpl extends BaseServiceImpl<Carrito, Long, CarritoRe
 
         carrito.addDettale(dCarrito);
 
-        this.update(idCarrito, carrito);
+        this.update(carrito.getId(), carrito);
 
         return dCarrito;
     };
 
     // Todo: manejar el tema del usuario
     Carrito findOrCreate(Long id) throws Exception {
-        Optional<Carrito> opt = this.repository.findById(id);
+        Optional<Carrito> opt = this.repository.findByUsuarioId(id);
         if (!opt.isPresent()) {
             return this.save(new Carrito());
         }

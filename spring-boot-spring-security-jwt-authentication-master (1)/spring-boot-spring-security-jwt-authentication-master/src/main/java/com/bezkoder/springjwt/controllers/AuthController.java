@@ -1,5 +1,8 @@
 package com.bezkoder.springjwt.controllers;
 
+import com.bezkoder.springjwt.Carrito.Carrito;
+import com.bezkoder.springjwt.Carrito.CarritoRepository;
+import com.bezkoder.springjwt.Carrito.DetalleCarrito;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +34,7 @@ import com.bezkoder.springjwt.repository.RoleRepository;
 import com.bezkoder.springjwt.repository.UserRepository;
 import com.bezkoder.springjwt.security.jwt.JwtUtils;
 import com.bezkoder.springjwt.security.services.UserDetailsImpl;
+import java.util.ArrayList;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -50,6 +54,8 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+  @Autowired
+  CarritoRepository repo;
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -90,7 +96,6 @@ public class AuthController {
     User user = new User(signUpRequest.getUsername(), 
                signUpRequest.getEmail(),
                encoder.encode(signUpRequest.getPassword()));
-
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
 
@@ -123,7 +128,9 @@ public class AuthController {
 
     user.setRoles(roles);
     userRepository.save(user);
-
+    
+    this.repo.save( new Carrito(user,new ArrayList<DetalleCarrito>()));
+            
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }
 }
