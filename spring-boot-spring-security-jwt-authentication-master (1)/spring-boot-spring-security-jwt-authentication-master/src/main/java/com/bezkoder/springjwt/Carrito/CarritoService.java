@@ -7,4 +7,6 @@ public interface CarritoService extends BaseService<Carrito, Long> {
     DetalleCarrito addItem(Long idCarrito,
             Long idItem,
             int cantidad) throws Exception;
+    
+    Carrito findByUsuarioId(Long id);
 }

@@ -15,11 +15,16 @@ function getToken() {
 
 function cerrarSesion() {
     window.sessionStorage.removeItem('JwtResponse');
-    return window.location.reload();
+    document.cookie = "autenticacion =; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+    return window.location.href="http://localhost:8080/login";
 }
+
+
 function irCarrito() {
     user = JSON.parse(sessionStorage.getItem('JwtResponse'));
-   document.cookie = "auth=Bearer "+user.accessToken + " expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/carrito"; 
-    window.location.href = "http://localhost:8080/carrito/"+user.id;
+    location.href= "http://localhost:8080/carrito/"+ user.id;
+
+   
+    
 }
 

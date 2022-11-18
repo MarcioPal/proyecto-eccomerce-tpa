@@ -89,7 +89,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         .authorizeRequests().antMatchers("/api/auth/**","/","/login","/registro","/styles/estilos.css",
                             "/productos/**", "/js/**").permitAll()
         .antMatchers("/api/test/**").permitAll()
-        .antMatchers("/carrito/**").hasRole("USER")
+        //.antMatchers("/carrito/**").hasRole("USER")
         .anyRequest().authenticated();
     
     http.authenticationProvider(authenticationProvider());

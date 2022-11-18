@@ -20,7 +20,11 @@ import com.bezkoder.springjwt.security.services.UserService;
 public class CarritoServiceImpl extends BaseServiceImpl<Carrito, Long, CarritoRepository> {
 
     ProductoService productoService;
+    @Autowired
+    DetalleCarritoRepository repoDetalle;
     UserService userService;
+    @Autowired
+    CarritoRepository repo;
 
     @Autowired
     CarritoServiceImpl(CarritoRepository repository, ProductoService productoService,
@@ -77,5 +81,14 @@ public class CarritoServiceImpl extends BaseServiceImpl<Carrito, Long, CarritoRe
         c.setUsuario(client);
         return repository.save(c);
     }
-
+    
+    public Carrito findByUsuarioId(Long id){
+        return repo.findByUsuarioId(id).get();
+    }
+    
+    public void deleteDetalleById(Long id){
+        this.repoDetalle.deleteFromJoinTable(id);
+        this.repoDetalle.deleteById(id);
+    }
 }
+

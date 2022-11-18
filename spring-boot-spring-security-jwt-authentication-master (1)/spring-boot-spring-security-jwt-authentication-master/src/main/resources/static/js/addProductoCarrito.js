@@ -11,7 +11,7 @@ function agregarACarrito() {
   const productoId = window.location.pathname.split("/")[2];
   const item = { cantidad: cantidad.value, producto: productoId };
 
-  fetch("http://localhost:9000/api/v1/carrito/1/item", {
+  fetch("http://localhost:8080/api/v1/carrito/1/item", {
     method: "POST",
     body: JSON.stringify(item),
     headers: {

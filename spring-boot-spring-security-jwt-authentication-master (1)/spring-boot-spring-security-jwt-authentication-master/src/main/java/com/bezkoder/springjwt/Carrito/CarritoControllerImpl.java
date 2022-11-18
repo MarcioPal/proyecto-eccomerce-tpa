@@ -20,7 +20,6 @@ import com.bezkoder.springjwt.Carrito.DTO.DTOCreateCarrito;
 @RequestMapping(path = "api/v1/carrito")
 public class CarritoControllerImpl extends BaseControllerImpl<Carrito, Long, CarritoServiceImpl> implements
         CarritoController {
-
     @Autowired
     public CarritoControllerImpl(CarritoServiceImpl service) {
         super(service);
@@ -43,6 +42,12 @@ public class CarritoControllerImpl extends BaseControllerImpl<Carrito, Long, Car
             throws Exception {
 
         return this.service.addItem(id, addItem);
+    }
+
+    @Override
+    @PostMapping("/detalle/eliminar/{id}")
+    public void deleteDetalleById(@PathVariable Long id) {
+         this.service.deleteDetalleById(id);
     }
 
 }

@@ -27,10 +27,12 @@ function loginUsuario() {
         .then(function (response) {
             console.log(response.status)
             if (response.status == 200) {
+               
                 response.json().then(json => {
                     console.log(json);
                     sessionStorage.setItem('JwtResponse', JSON.stringify(json))
                     window.location.href = "http://localhost:8080/"
+                    document.cookie = "autenticacion="+JSON.parse(sessionStorage.getItem('JwtResponse')).accessToken; + "Path=/; Expires=Sat, 18 Nov 2023 02:25:43 GMT;"
                   });
                 
             }else{

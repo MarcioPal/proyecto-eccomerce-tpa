@@ -44,7 +44,7 @@ public class FrontendService {
     }
 
     DTOCarritoUI buildCarritoData(Long id) throws Exception {
-        Carrito c = carritoService.findById(id);
+        Carrito c = carritoService.findByUsuarioId(id);
 
         float total = 0;
         for (DetalleCarrito d : c.getDetalles()) {

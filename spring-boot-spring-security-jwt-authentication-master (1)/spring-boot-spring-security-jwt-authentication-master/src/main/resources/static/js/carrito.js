@@ -1,14 +1,25 @@
-let jwtResponse = JSON.parse(window.sessionStorage.getItem('JwtResponse'));
-console.log(jwtResponse.id);
-console.log(jwtResponse.accessToken)
 
 
+ function eliminarItem(id){
 
-function cerrarSesion(){
-    window.sessionStorage.removeItem('JwtResponse');
-    return window.location.reload();
+    if(confirm("¿Esta seguro que desea eliminar este item?")){
+
+    fetch('http://localhost:8080/api/v1/carrito/detalle/eliminar/'+id, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+    })
+        .then(function (response) {
+            console.log(response.status)
+            if (response.status == 200) {
+
+                    window.location.reload()
+
+            }else{
+                alert("Se ha producido un error, intente nuevamente")
+            }
+        })
 }
-function irCarrito(){
-    user = JSON.parse(sessionStorage.getItem('JwtResponse'));
-    window.location.href = "/carrito/"+user.id;
-}
+ }
