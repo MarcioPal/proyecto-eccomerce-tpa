@@ -1,0 +1,24 @@
+<div class="dropdown" th:fragment="product_filter">
+  <button
+    class="btn btn-secondary dropdown-toggle"
+    type="button"
+    id="dropdownMenuButton1"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Filtrar
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a th:href="@{/}" class="dropdown-item">Todos</a></li>
+    <div th:each="categoria : ${categorias}">
+      <li>
+        <a
+          class="dropdown-item"
+          th:href="@{/(categoria=${categoria.id})}"
+          th:text="${categoria.nombre}"
+          >Categoria</a
+        >
+      </li>
+    </div>
+  </ul>
+</div>
