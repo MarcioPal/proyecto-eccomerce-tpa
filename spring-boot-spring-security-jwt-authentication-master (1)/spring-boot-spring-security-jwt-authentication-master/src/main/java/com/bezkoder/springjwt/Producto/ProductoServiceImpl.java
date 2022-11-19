@@ -58,7 +58,7 @@ public class ProductoServiceImpl extends BaseServiceImpl<Producto, Long, Product
             producto.setNombre(p.getNombre());
             producto.setPrecio(p.getPrecio());
             producto.setStock(p.getStock());
-            Categoria cat = this.categoriaService.findById(p.getId());
+            Categoria cat = this.categoriaService.findById(p.getCategoria());
             producto.setCateogria(cat);
             return repository.save(producto);
         } catch (Exception e) {

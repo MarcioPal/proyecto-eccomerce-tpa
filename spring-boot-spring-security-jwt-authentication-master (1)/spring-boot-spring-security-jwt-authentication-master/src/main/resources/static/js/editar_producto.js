@@ -4,7 +4,7 @@ let url_base = "http://localhost:8080"
 
     if(confirm("¿Esta seguro que desea dar de baja este producto?")){
 
-    fetch(url_base+'/api/v1/producto/admin/producto/darBaja/'+id, {
+    fetch(url_base+'/producto/admin/darBaja/'+id, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ let url_base = "http://localhost:8080"
     let categoria = document.getElementById('categoria');
 
 
-    fetch(url_base+'/api/v1/producto/actualizar', {
+    fetch(url_base+'/producto/admin/actualizar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ let url_base = "http://localhost:8080"
             console.log(response.status)
             if (response.status == 200) {
                     alert("El producto se ha actualizado correctamente");
-                    window.location.href=url_base+"admin/producto/editar"+id
+                    window.location.href=url_base+"admin/producto/editar/"+id
 
             }else{
                 alert("Se ha producido un error, intente nuevamente")
