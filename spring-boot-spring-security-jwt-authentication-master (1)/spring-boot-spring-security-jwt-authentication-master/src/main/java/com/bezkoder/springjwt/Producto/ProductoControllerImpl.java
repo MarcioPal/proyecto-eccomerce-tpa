@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bezkoder.springjwt.Base.BaseControllerImpl;
 import com.bezkoder.springjwt.Producto.DTO.DTOCreateProducto;
+import com.bezkoder.springjwt.Producto.DTO.DTOUpdateProducto;
+import java.time.LocalDateTime;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -45,5 +50,22 @@ public class ProductoControllerImpl
         System.out.println(dto.getNombre());
         return 1;
     }
+    
+    @PostMapping("/admin/producto/darBaja/{id}")
+     public void darBajaProducto(@PathVariable Long id){
+         Producto p = this.service.findById(id);
+         p.setFechaHoraBaja(LocalDateTime.now());
+         this.service.Save(p);
+     }
+     
+     @PostMapping("/actualizar")
+     public String actualizarProducto(@RequestBody DTOUpdateProducto producto){
+         try{
+         this.service.update(producto);
+         return "producto actualizado correctamente";
+         }catch(Exception e){
+             return "se ha producido un error";
+         }
+     }
 
 }

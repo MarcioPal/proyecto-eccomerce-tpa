@@ -31,6 +31,7 @@ function loginUsuario() {
                 response.json().then(json => {
                     console.log(json);
                     sessionStorage.setItem('JwtResponse', JSON.stringify(json))
+         
                     window.location.href = "http://localhost:8080/"
                     document.cookie = "autenticacion="+JSON.parse(sessionStorage.getItem('JwtResponse')).accessToken; + "Path=/; Expires=Sat, 18 Nov 2023 02:25:43 GMT;"
                   });
@@ -44,4 +45,14 @@ function loginUsuario() {
 
 
     //.then(window.location.href = "http://localhost:9000/"); 
+}
+
+function verificarRolAdmin(roles){
+    let boolean;
+     for(var i=0;roles.length;i++){
+        if(roles[i] == "ROLE_ADMIN"){
+            return true;
+        }
+     }
+     return false;
 }
