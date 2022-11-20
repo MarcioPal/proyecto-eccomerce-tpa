@@ -1,3 +1,4 @@
+let url_base ="http://localhost:8080"
 function getToken() {
     return JSON.parse(window.sessionStorage.getItem('JwtResponse'));
 }
@@ -8,10 +9,9 @@ function getToken() {
            document.getElementById("btnLogout").style.display = "inline";
            document.getElementById("btnLogin").style.display = "none";
            document.getElementById("btnCarrito").style.display = "inline";
-           if(window.location.href == "http://localhost:8080/admin"){
+           if(window.location.href == url_base+"/admin"){
             document.getElementById("btnCarrito").style.display = "none";
-
-           }
+           }  
         } 
      });
    
